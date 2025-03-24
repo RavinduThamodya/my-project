@@ -1,19 +1,25 @@
-def calculate_gpa(grades):
-    """Calculate GPA from a list of grades (0.0 - 4.0 scale)."""
-    if not grades:
-        return 0.0
-    return sum(grades) / len(grades)
+def calculator():
+    """Simple calculator for basic arithmetic operations."""
+    num1 = float(input("Enter first number: "))
+    operator = input("Enter operation (+, -, *, /): ")
+    num2 = float(input("Enter second number: "))
 
-def main():
-    num_courses = int(input("Enter number of courses: "))
-    grades = []
+    if operator == '+':
+        result = num1 + num2
+    elif operator == '-':
+        result = num1 - num2
+    elif operator == '*':
+        result = num1 * num2
+    elif operator == '/':
+        if num2 == 0:
+            print("Error! Division by zero is not allowed.")
+            return
+        result = num1 / num2
+    else:
+        print("Invalid operator! Please use +, -, *, or /.")
+        return
 
-    for i in range(num_courses):
-        grade = float(input(f"Enter grade for course {i+1} (0.0 - 4.0): "))
-        grades.append(grade)
-
-    gpa = calculate_gpa(grades)
-    print(f"Your Semester GPA is: {gpa:.2f}")
+    print(f"Result: {result}")
 
 if __name__ == "__main__":
-    main()
+    calculator()
