@@ -1,24 +1,30 @@
+def calculate_weighted_gpa(grades, credits):
+    """Calculate GPA with weights based on credit hours."""
+    total_weighted_score = sum(grade * credit for grade, credit in zip(grades, credits))
+    total_credits = sum(credits)
+    return total_weighted_score / total_credits if total_credits > 0 else 0.0
+
 def main():
     num_courses = int(input("Enter number of courses: "))
     grades = []
     credits = []
 
-<<<<<<< HEAD  # (Feature-WeightedGPA version)
     for i in range(num_courses):
-        grade = float(input(f"Enter grade for course {i+1} (0.0 - 4.0): "))
-        credit = float(input(f"Enter credits for course {i+1}: "))
-        grades.append(grade)
-        credits.append(credit)
-=======
-    for i in range(num_courses):  # (Feature-InputValidation version)
         while True:
             try:
                 grade = float(input(f"Enter grade for course {i+1} (0.0 - 4.0): "))
-                if 0.0 <= grade <= 4.0:
+                credit = float(input(f"Enter credits for course {i+1}: "))
+                if 0.0 <= grade <= 4.0 and credit > 0:
                     grades.append(grade)
+                    credits.append(credit)
                     break
                 else:
-                    print("Invalid input! Please enter a grade between 0.0 and 4.0.")
+                    print("Invalid input! Ensure grade is between 0.0 - 4.0 and credits are positive.")
             except ValueError:
-                print("Invalid input! Please enter a numeric grade.")
->>>>>>> Feature-InputValidation
+                print("Invalid input! Please enter numeric values.")
+
+    gpa = calculate_weighted_gpa(grades, credits)
+    print(f"Your Weighted Semester GPA is: {gpa:.2f}")
+
+if __name__ == "__main__":
+    main()
