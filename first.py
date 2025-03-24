@@ -1,8 +1,27 @@
 def calculator():
-    """Simple calculator for basic arithmetic operations."""
-    num1 = float(input("Enter first number: "))
-    operator = input("Enter operation (+, -, *, /): ")
-    num2 = float(input("Enter second number: "))
+    """Simple calculator with additional operations."""
+    while True:
+        try:
+            num1 = float(input("Enter first number: "))
+            break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
+
+    while True:
+        operator = input("Enter operation (+, -, *, /, **, %, //): ")
+        if operator in ['+', '-', '*', '/', '**', '%', '//']:
+            break
+        print("Invalid operator! Please enter +, -, *, /, **, %, or //.")
+
+    while True:
+        try:
+            num2 = float(input("Enter second number: "))
+            if operator in ['/', '//', '%'] and num2 == 0:
+                print("Error! Division or modulus by zero is not allowed.")
+            else:
+                break
+        except ValueError:
+            print("Invalid input! Please enter a valid number.")
 
     if operator == '+':
         result = num1 + num2
@@ -11,13 +30,13 @@ def calculator():
     elif operator == '*':
         result = num1 * num2
     elif operator == '/':
-        if num2 == 0:
-            print("Error! Division by zero is not allowed.")
-            return
         result = num1 / num2
-    else:
-        print("Invalid operator! Please use +, -, *, or /.")
-        return
+    elif operator == '**':
+        result = num1 ** num2
+    elif operator == '%':
+        result = num1 % num2
+    elif operator == '//':
+        result = num1 // num2
 
     print(f"Result: {result}")
 
